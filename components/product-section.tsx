@@ -26,7 +26,7 @@ const categoryGroups = [
     ],
   },
   {
-    category: "Регулировка воздуха",
+    category: "Регулировка и управление",
     items: [
       { name: "Распределители", category: "Регулировка воздуха", image: "/products/raspredblock.png" },
       { name: "Редукторы", category: "Регулировка воздуха", image: "/products/reductor.png" },
@@ -34,11 +34,11 @@ const categoryGroups = [
     ],
   },
   {
-    category: "Управление",
+    category: "Элементы автоматизации",
     items: [
-      { name: "Блоки распределения", category: "Управление", image: "/products/raspredblock.png" },
-      { name: "Датчики и реле", category: "Управление", image: "/products/rele.png" },
-      { name: "Элементы ручного управления", category: "Управление", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" },
+      { name: "Пневмоострова", category: "Управление", image: "/products/ostrov.png" },
+      { name: "Датчики, реле, индикаторы", category: "Управление", image: "/products/rele.png" },
+      { name: "Контроллеры", category: "Управление", image: "/products/controller.png" },
     ],
   },
 ] as const;
@@ -54,10 +54,14 @@ export default function ProductsSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          const target = entry.target;
+
           if (entry.isIntersecting) {
-            entry.target.setAttribute("data-reveal-visible", "true");
-            observer.unobserve(entry.target);
+            target.setAttribute("data-reveal-visible", "true");
+            return;
           }
+
+          target.setAttribute("data-reveal-visible", "false");
         });
       },
       {
@@ -81,9 +85,12 @@ export default function ProductsSection() {
           data-reveal-visible="false"
           className="mb-7 opacity-0 translate-y-6 transition-all duration-700 ease-out data-[reveal-visible=true]:opacity-100 data-[reveal-visible=true]:translate-y-0"
         >
-          <h2 className="m-0 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-[clamp(2rem,3vw,3.2rem)] font-black leading-[1.08] tracking-[-0.05em] text-transparent">
-            Товары
-          </h2>
+          <h2
+          id="products-heading"
+          className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
+        >
+          Каталог пневмооборудования и компонентов
+        </h2>
         </div>
 
         <div className="grid gap-[18px] md:grid-cols-2 xl:grid-cols-4">

@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { label: "Компетенции", href: "#competencies" },
   { label: "Товары", href: "#products" },
   { label: "Партнёры", href: "#partners" },
+  { label: "Преимущества", href: "#why-us" },
   { label: "Контакты", href: "#contacts" },
 ]
 
