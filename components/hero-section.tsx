@@ -28,7 +28,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(239,68,68,0.18),_transparent_42%),linear-gradient(135deg,_rgba(255,255,255,0.85),_rgba(248,250,252,0.85))]" />
       </div>
 
-      <div className="mx-auto flex min-h-[92vh] max-w-6xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:min-h-[94vh]">
+      <div className="hero-content mx-auto flex min-h-[92vh] max-w-6xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:min-h-[94vh]">
         <div className="mb-6 flex flex-wrap items-center justify-center gap-3">
           <span className="hero-chip">СВК Технолоджи</span>
           <span className="hero-chip hero-chip--muted">Пневмоавтоматика</span>

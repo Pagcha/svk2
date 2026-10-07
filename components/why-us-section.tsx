@@ -57,7 +57,7 @@ export function WhyUsSection() {
             id="why-us-heading"
             className="bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
           >
-            Наши главнвые преимущества
+            Наши главные преимущества
           </h2>
         </div>
 

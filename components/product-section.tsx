@@ -87,7 +87,7 @@ export default function ProductsSection() {
         >
           <h2
           id="products-heading"
-          className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
+          className="mb-10 pb-1 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
         >
           Каталог пневмооборудования и компонентов
         </h2>
