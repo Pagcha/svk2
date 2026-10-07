@@ -254,7 +254,7 @@ export function PartnersSection() {
                     >
                       <div className="max-w-[80%] rounded-xl border border-slate-400/40 bg-white/95 px-3 py-2 text-center backdrop-blur-sm">
                         <div className="text-sm font-bold text-slate-900">{name}</div>
-                        <p className="mt-1 text-[12px] leading-relaxed text-slate-700">{description}</p>
+                        <p className="mt-1 font-bold text-[12px] leading-relaxed text-slate-700">{description}</p>
                       </div>
                     </div>
                   </div>
