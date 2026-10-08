@@ -13,9 +13,9 @@ export default function Page() {
       <SiteHeader />
       <main>
         <HeroSection />
+        <ProductsSection />
         <AboutSection />
         <CompetenciesSection />
-        <ProductsSection />
         <PartnersSection />
         <WhyUsSection />
         <ContactSection />

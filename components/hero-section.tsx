@@ -28,10 +28,9 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(239,68,68,0.18),_transparent_42%),linear-gradient(135deg,_rgba(255,255,255,0.85),_rgba(248,250,252,0.85))]" />
       </div>
 
-      <div className="hero-content mx-auto flex min-h-[92vh] max-w-6xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:min-h-[94vh]">
+      <div className="site-shell hero-content flex min-h-[92vh] flex-col items-center justify-center py-20 text-center lg:min-h-[94vh]">
         <div className="mb-6 flex flex-wrap items-center justify-center gap-3">
-          <span className="hero-chip">СВК Технолоджи</span>
-          <span className="hero-chip hero-chip--muted">Пневмоавтоматика</span>
+          
         </div>
 
         <h1 className="max-w-5xl text-balance text-3xl font-black tracking-[-0.06em] text-black sm:text-5xl lg:text-7xl">
@@ -61,18 +60,7 @@ export function HeroSection() {
           </a>
         </div>
 
-        {/* <div className="mt-10 grid w-full max-w-4xl gap-3 sm:grid-cols-3">
-          {[
-            ['10+', 'лет опыта'],
-            ['300+', 'проектов'],
-            ['100%', 'довольных клиентов'],
-          ].map(([value, label]) => (
-            <div key={label} className="rounded-2xl border border-white/70 bg-white/75 p-4 shadow-[0_16px_40px_rgba(15,23,42,0.08)] backdrop-blur-sm">
-              <div className="text-2xl font-black tracking-[-0.05em] text-slate-900">{value}</div>
-              <div className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-slate-600">{label}</div>
-            </div>
-          ))}
-        </div> */}
+        
       </div>
     </section>
   )

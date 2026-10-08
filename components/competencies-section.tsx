@@ -71,7 +71,7 @@ export function CompetenciesSection() {
     >
       <div className="ambient-orb ambient-orb--1" />
       <div className="ambient-orb ambient-orb--2" />
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+      <div className="site-shell py-12 lg:py-16">
         <h2
           id="competencies-heading"
           className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
@@ -85,7 +85,7 @@ export function CompetenciesSection() {
             return (
               <li key={title}>
                 <article
-                  className={`competency-card card-appear group relative flex flex-col overflow-hidden rounded-3xl border border-gray-300/40 bg-white shadow-[0_10px_24px_rgba(15,23,42,0.04)] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_18px_36px_rgba(239,68,68,0.12)] sm:flex-row ${
+                  className={`competency-card card-appear group relative flex flex-col overflow-hidden border border-gray-300/40 bg-white shadow-[0_10px_24px_rgba(15,23,42,0.04)] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_18px_36px_rgba(239,68,68,0.12)] sm:flex-row ${
                     iconFirst ? "" : "sm:flex-row-reverse"
                   }`}
                   style={{ transitionDelay: `${index * 120}ms` }}
@@ -97,7 +97,7 @@ export function CompetenciesSection() {
                       iconFirst ? "sm:border-r" : "sm:border-l"
                     } sm:border-red-300/40`}
                   >
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/25 bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-sm transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                    <div className="flex h-16 w-16 items-center justify-center border border-white/25 bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-sm transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
                       <Icon
                         className="competency-icon h-8 w-8 text-white transition-transform duration-500 group-hover:scale-110"
                         aria-hidden="true"
@@ -107,7 +107,7 @@ export function CompetenciesSection() {
 
                   <div className="relative z-10 flex flex-col justify-center gap-2 p-6 sm:p-8">
                     <div className="mb-1 flex items-center gap-2">
-                      <span className="h-2.5 w-2.5 rounded-full bg-red-500 shadow-[0_0_14px_rgba(239,68,68,0.7)]" />
+                      <span className="h-2.5 w-2.5 bg-red-500 shadow-[0_0_14px_rgba(239,68,68,0.7)]" />
                       <h3 className="text-lg font-bold text-black">{title}</h3>
                     </div>
                     <p className="text-pretty leading-relaxed text-slate-700">

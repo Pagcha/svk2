@@ -73,7 +73,7 @@ const loopedPartners = [...partners, ...partners]
 export function PartnersSection() {
   const sectionRef = useRef<HTMLElement | null>(null)
   const trackRef = useRef<HTMLUListElement | null>(null)
-  const [activeCard, setActiveCard] = useState<number | null>(null)
+  const [centeredIndex, setCenteredIndex] = useState(0)
   const metricsRef = useRef({ setWidth: 0, step: 0, maxScroll: 0 })
 
   const prefersReducedMotion = () =>
@@ -97,6 +97,27 @@ export function PartnersSection() {
     }
   }, [])
 
+  const updateCentered = useCallback(() => {
+    const track = trackRef.current
+    if (!track) return
+    const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2
+    let best = 0
+    let bestDist = Infinity
+
+    Array.from(track.children).forEach((item, i) => {
+      const r = item.getBoundingClientRect()
+      const d = Math.abs(r.left + r.width / 2 - trackCenter)
+      if (d < bestDist) {
+        bestDist = d
+        best = i
+      }
+    })
+
+    const idx = best % partners.length
+    setCenteredIndex((prev) => (prev === idx ? prev : idx))
+  }, [])
+
+  // Появление карточек при входе в вьюпорт
   useEffect(() => {
     const section = sectionRef.current
     if (!section) return
@@ -121,13 +142,29 @@ export function PartnersSection() {
     }
   }, [])
 
+  // Первичное определение центральной карточки
+  useEffect(() => {
+    updateCentered()
+  }, [updateCentered])
+
+  // Замер размеров, ResizeObserver и блокировка прокрутки колесом
   useEffect(() => {
     measure()
     const track = trackRef.current
     if (!track) return
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault() // колесо прокручивает страницу, а не карусель
+    }
+    track.addEventListener("wheel", onWheel, { passive: false })
+
     const observer = new ResizeObserver(measure)
     observer.observe(track)
-    return () => observer.disconnect()
+
+    return () => {
+      track.removeEventListener("wheel", onWheel)
+      observer.disconnect()
+    }
   }, [measure])
 
   const handleScroll = useCallback(() => {
@@ -141,7 +178,9 @@ export function PartnersSection() {
     } else if (track.scrollLeft >= maxScroll - 1) {
       track.scrollLeft -= setWidth
     }
-  }, [])
+
+    updateCentered()
+  }, [updateCentered])
 
   const scrollCards = (direction: 1 | -1) => {
     const track = trackRef.current
@@ -161,8 +200,13 @@ export function PartnersSection() {
     })
   }
 
-  const toggleCard = (index: number) =>
-    setActiveCard((prev) => (prev === index ? null : index))
+  const scrollToCard = (e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
+    e.currentTarget.closest("li")?.scrollIntoView({
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+      inline: "center",
+      block: "nearest",
+    })
+  }
 
   return (
     <section
@@ -173,7 +217,7 @@ export function PartnersSection() {
     >
       <div className="ambient-orb ambient-orb--1" />
       <div className="ambient-orb ambient-orb--2" />
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+      <div className="site-shell py-12 lg:py-16">
         <h2
           id="partners-heading"
           className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
@@ -181,24 +225,27 @@ export function PartnersSection() {
           Генеральные партнёры компании
         </h2>
 
-        <div className="relative mx-auto w-[95%] max-w-[1400px]">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center">
+        <div className="relative w-full overflow-visible pb-12 pt-4">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-gradient-to-r from-slate-100 via-slate-100/80 to-transparent md:w-24" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-gradient-to-l from-slate-100 via-slate-100/80 to-transparent md:w-24" />
+
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-30 flex items-center">
             <button
               type="button"
               aria-label="Прокрутить партнёров назад"
               onClick={() => scrollCards(-1)}
-              className="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white/90 text-slate-700 shadow-lg shadow-slate-200/80 backdrop-blur-sm transition hover:border-red-200 hover:text-red-600"
+              className="pointer-events-auto flex h-[420px] w-12 items-center justify-center bg-transparent text-slate-500 transition duration-300 hover:text-red-600"
             >
               <ArrowLeft className="h-5 w-5" />
             </button>
           </div>
 
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 flex items-center">
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-30 flex items-center">
             <button
               type="button"
               aria-label="Прокрутить партнёров вперёд"
               onClick={() => scrollCards(1)}
-              className="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white/90 text-slate-700 shadow-lg shadow-slate-200/80 backdrop-blur-sm transition hover:border-red-200 hover:text-red-600"
+              className="pointer-events-auto flex h-[420px] w-12 items-center justify-center bg-transparent text-slate-500 transition duration-300 hover:text-red-600"
             >
               <ArrowRight className="h-5 w-5" />
             </button>
@@ -210,51 +257,56 @@ export function PartnersSection() {
             tabIndex={0}
             role="region"
             aria-label="Карточки партнёров, прокручиваемый список"
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pl-16 pr-16 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="flex h-[430px] snap-x snap-mandatory gap-4 overflow-x-auto pb-8 pl-16 pr-16 pt-11 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             {loopedPartners.map(({ name, src, description }, index) => {
               const isClone = index >= partners.length
-              const isActive = activeCard === index
+              const cardIndex = isClone ? index - partners.length : index
+              const isCentered = cardIndex === centeredIndex
 
               return (
                 <li
                   key={`${name}-${index}`}
                   aria-hidden={isClone || undefined}
-                  className="group relative w-[240px] shrink-0 snap-center sm:w-[250px] lg:w-[260px]"
+                  className="group relative z-0 w-[240px] shrink-0 snap-center transition-all duration-300 hover:z-20 sm:w-[250px] lg:w-[240px]"
                 >
                   <div
                     data-reveal
                     role="button"
                     tabIndex={isClone ? -1 : 0}
-                    aria-pressed={isActive}
-                    aria-label={`${name}: показать описание`}
-                    onClick={() => toggleCard(index)}
+                    aria-label={`${name}: показать в центре`}
+                    onClick={scrollToCard}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault()
-                        toggleCard(index)
+                        scrollToCard(e)
                       }
                     }}
-                    className="partner-card relative flex aspect-[1/1.35] w-full cursor-pointer items-center justify-center overflow-hidden rounded-3xl border border-gray-300/50 bg-gradient-to-br from-white to-slate-50 p-3 shadow-[0_10px_24px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_18px_32px_rgba(239,68,68,0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+                    style={{
+                      scale: isCentered ? "1.12" : undefined,
+                      borderColor: isCentered ? "rgb(254 202 202)" : undefined,
+                      zIndex: isCentered ? 10 : undefined,
+                    }}
+                    className="partner-card relative z-0 flex h-[320px] w-full cursor-pointer origin-center items-center justify-center overflow-visible border border-gray-300/50 bg-gradient-to-br from-white to-slate-50 p-3 shadow-[0_10px_24px_rgba(15,23,42,0.04)] transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-20 hover:h-[390px] hover:w-[calc(100%+60px)] hover:-translate-x-[30px] hover:-translate-y-[35px] hover:border-red-200 hover:shadow-[0_18px_32px_rgba(239,68,68,0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
                   >
                     <Image
                       src={src}
                       alt={name}
                       fill
                       sizes="(max-width: 640px) 220px, (max-width: 1024px) 240px, 260px"
-                      className={`object-contain p-3 transition duration-300 group-hover:brightness-75 ${
-                        isActive ? "brightness-75" : ""
-                      }`}
+                      className="object-contain p-3 transition duration-300"
                     />
 
                     <div
-                      className={`pointer-events-none absolute inset-0 flex items-center justify-center bg-slate-900/15 transition duration-300 group-hover:opacity-100 ${
-                        isActive ? "opacity-100" : "opacity-0"
+                      className={`pointer-events-none absolute inset-0 flex items-center justify-center bg-slate-900/15 transition-opacity duration-300 ${
+                        isCentered ? "opacity-100" : "opacity-0"
                       }`}
                     >
-                      <div className="max-w-[80%] rounded-xl border border-slate-400/40 bg-white/95 px-3 py-2 text-center backdrop-blur-sm">
-                        <div className="text-sm font-bold text-slate-900">{name}</div>
-                        <p className="mt-1 font-semibold text-[12px] leading-relaxed text-slate-700">{description}</p>
+                      <div className="max-w-[82%] border border-slate-400/40 bg-white/95 px-3 py-2 text-center shadow-sm backdrop-blur-sm">
+                        <div className="text-sm font-bold text-slate-900 text-[18px]">{name}</div>
+                        <p className="mt-1 font-semibold text-[14px] leading-relaxed text-slate-700">
+                          {description}
+                        </p>
                       </div>
                     </div>
                   </div>

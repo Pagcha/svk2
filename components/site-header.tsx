@@ -6,9 +6,9 @@ import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const NAV_ITEMS = [
+  { label: "Товары", href: "#products" },
   { label: "О нас", href: "#about" },
   { label: "Компетенции", href: "#competencies" },
-  { label: "Товары", href: "#products" },
   { label: "Партнёры", href: "#partners" },
   { label: "Преимущества", href: "#why-us" },
   { label: "Контакты", href: "#contacts" },
@@ -19,9 +19,9 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-red-200/80 bg-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.06)] backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex shrink-0 items-center" aria-label="СВК Технолоджи — на главную">
-          <span className="flex items-center justify-center rounded-xl border border-red-200 bg-white p-2 shadow-[0_8px_18px_rgba(239,68,68,0.12)]">
+      <div className="site-shell grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-3">
+        <Link href="/" className="flex shrink-0 items-center justify-self-start" aria-label="СВК Технолоджи — на главную">
+          <span className="flex items-center justify-center p-2">
             <img
               src="/logos/svk-logo.png"
               alt="СВК Технолоджи"
@@ -30,7 +30,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center md:flex" aria-label="Основная навигация">
+        <nav className="hidden items-center justify-self-center md:flex" aria-label="Основная навигация">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
@@ -43,23 +43,18 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <a
-          href="#contacts"
-          className="hidden rounded-full border border-red-200 bg-red-600 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-white shadow-[0_12px_24px_rgba(239,68,68,0.25)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-red-500 md:inline-flex"
-        >
-          Связаться
-        </a>
-
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Закрыть меню" : "Открыть меню"}
-        >
-          {open ? <X className="size-6" /> : <Menu className="size-6" />}
-        </button>
+        <div className="justify-self-end md:hidden">
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex items-center justify-center p-2 text-slate-700"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Закрыть меню" : "Открыть меню"}
+          >
+            {open ? <X className="size-6" /> : <Menu className="size-6" />}
+          </button>
+        </div>
       </div>
 
       <nav
@@ -70,7 +65,7 @@ export function SiteHeader() {
           open ? "block" : "hidden",
         )}
       >
-        <ul className="mx-auto max-w-6xl px-4 py-2 sm:px-6">
+        <ul className="site-shell py-2">
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
               <Link
