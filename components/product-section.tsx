@@ -56,12 +56,6 @@ export default function ProductsSection() {
       className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.12),transparent_38%),linear-gradient(180deg,#ffffff_0%,#fff7f7_38%,#f8fafc_100%)] py-[clamp(52px,6vw,90px)] text-slate-900"
     >
       <div className="relative z-10 w-screen max-w-none -ml-[50vw] left-1/2 px-0">
-        {/* <div className="mb-5">
-          <span className="inline-flex border border-red-200 bg-red-50 px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-red-700">
-            Каталог
-          </span>
-        </div> */}
-
         <div className="grid gap-0 md:grid-cols-2">
           {products.map((product, index) => (
             <article

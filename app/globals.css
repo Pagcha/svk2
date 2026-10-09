@@ -574,9 +574,53 @@
     opacity: 1;
   }
 }
-
+/* 
 .partner-card.is-centered {
   scale: 1.12;
   border-color: rgb(254 202 202);
+} */
+
+/* Наведение на обычную карточку — только лёгкий scale, никакого движения */
+.partner-card:not(:hover) {
+  scale: 1;
+}
+.partner-card:hover {
+  scale: 1.05;
+  border-color: rgb(254 202 202);
+  box-shadow: 0 18px 32px rgba(239, 68, 68, 0.12);
+  z-index: 20;
 }
 
+/* Центральная карточка: раздвигается влево-вправо (альбомная ориентация)
+   и слегка «выдвигается» к зрителю. При наведении — без изменений. */
+li.is-centered .partner-card {
+  width: calc(100% + 500px);
+  margin-left: -250px;
+  height: calc(100% + 300px);
+  margin-top: -150px;
+  scale: 1.03;
+  border-color: rgb(254 202 202);
+  box-shadow: 0 24px 48px rgba(239, 68, 68, 0.16);
+  z-index: 10;
+  cursor: default;
+  transition: 0.15s;
+}
+
+li.is-centered .partner-card:hover {
+  scale: 1.03; /* подавляем hover-scale для центральной карточки */
+  border-color: rgb(254 202 202);
+  box-shadow: 0 24px 48px rgba(239, 68, 68, 0.16);
+}
+
+.partner-card__desc {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Текст появляется только после раскрытия карточки (раскрытие идёт ~1s) */
+li.is-centered .partner-card__desc {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.25s;
+}
