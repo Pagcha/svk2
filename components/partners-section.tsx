@@ -247,7 +247,10 @@ export function PartnersSection() {
               role="region"
               aria-label="Карточки партнёров, прокручиваемый список"
               className="partners-track flex h-[75vh] justify-start snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden pb-8 pl-16 pr-16 pt-11 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-            >
+            >{/* Пустая карточка слева */}
+              <li aria-hidden="true" className="w-[340px] shrink-0">
+                <div className="partner-card flex h-[320px] w-full items-center justify-center border border-dashed border-gray-300/60 bg-gradient-to-br from-white to-slate-50" />
+              </li>
             {spacerCards.map((spacer) => (
               <li
                 key={`spacer-left-${spacer.id}`}
@@ -317,8 +320,13 @@ export function PartnersSection() {
                     </div>
                   </div>
                 </li>
+                
               )
             })}
+            {/* Пустая карточка справа */}
+<li aria-hidden="true" className="w-[340px] shrink-0">
+  <div className="partner-card flex h-[320px] w-full items-center justify-center border border-dashed border-gray-300/60 bg-gradient-to-br from-white to-slate-50" />
+</li>
 
             {spacerCards.map((spacer) => (
               <li
