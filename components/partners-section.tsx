@@ -202,7 +202,7 @@ export function PartnersSection() {
       ref={sectionRef}
       id="partners"
       aria-labelledby="partners-heading"
-      className="section-ambient border-b border-red-950/10 bg-gradient-to-b from-white to-slate-100"
+      className="section-ambient border-b border-red-950/10 bg-gradient-to-b from-white to-slate-100 "
     >
       <div className="ambient-orb ambient-orb--1" />
       <div className="ambient-orb ambient-orb--2" />
@@ -214,7 +214,7 @@ export function PartnersSection() {
           Генеральные партнёры компании
         </h2>
 
-        <div className="relative w-full overflow-visible pb-12 pt-4 h-[500px]">
+        <div className="relative w-full overflow-visible pb-12 pt-4 h-[600px]">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-gradient-to-r from-slate-100 via-slate-100/80 to-transparent md:w-24" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-gradient-to-l from-slate-100 via-slate-100/80 to-transparent md:w-24" />
 
@@ -246,7 +246,7 @@ export function PartnersSection() {
               tabIndex={0}
               role="region"
               aria-label="Карточки партнёров, прокручиваемый список"
-              className="partners-track flex h-[55vh] snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden pb-8 pl-16 pr-16 pt-11 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              className="partners-track flex h-[75vh] justify-start snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden pb-8 pl-16 pr-16 pt-11 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             >
             {spacerCards.map((spacer) => (
               <li
@@ -274,7 +274,7 @@ export function PartnersSection() {
                   key={name}
                   data-real-index={index}
                   style={{ zIndex: isCentered ? 10 : undefined }}
-                  className={`gap-[1000px] group relative w-[340px] shrink-0 snap-center transition-all duration-300 hover:z-20 sm:w-[250px] lg:w-[240px] ${
+                  className={` group relative w-[340px] shrink-0 snap-center transition-all duration-300 ${
                     isCentered ? "is-centered" : ""
                   }`}
                 >
@@ -309,8 +309,8 @@ export function PartnersSection() {
                         <div className="relative mx-auto h-[72px] max-w-[224px]">
                           <Image src={src} alt={name} fill sizes="224px" className="object-contain" />
                         </div>
-                        <div className="text-[18px] font-bold text-slate-900">{name}</div>
-                        <p className="mt-1 font-semibold text-[16px] leading-relaxed text-slate-700">
+                        <div className="text-[28px] font-bold text-slate-900">{name}</div>
+                        <p className="mt-1 font-semibold text-[20px] leading-relaxed text-slate-700">
                           {description}
                         </p>
                       </div>

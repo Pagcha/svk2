@@ -593,9 +593,10 @@
 /* Наклонённая лента: карточки — параллелограммы, центральная — прямая */
 .partners-track li {
   transform: skewX(-8deg);
-  opacity: 0.7;
+  opacity: 1;
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
               opacity 0.7s ease;
+  margin-top: 10vh; 
 }
 
 .partners-track li.is-centered {
@@ -605,8 +606,8 @@
 
 /* Логотип выправляем обратно и приглушаем; центральный — яркий */
 .partners-track .partner-card > img {
-  transform: skewX(8deg) scale(1.15);
-  opacity: 0.55;
+  transform: skewX(8deg) scale(1);
+  opacity: 1;
   filter: grayscale(35%);
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
               opacity 0.7s ease,
@@ -624,9 +625,10 @@
   border-color: rgb(254 202 202);
   box-shadow: 0 24px 48px rgba(239, 68, 68, 0.18);
   width: calc(100% + 130%);
-  height: calc(100% + 30%);
-  transform: translateY(-20%) scale(1.05);
-  transform: translateX(-20%) scale(1.05);
+  height: calc(100% + 10%);
+  transform: translateY(-50%);
+  transform: translateX(-25%);
+  margin-top: -8vh;
 }
 
 /* На мобильных без приглушения — как в исходном сниппете */

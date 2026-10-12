@@ -240,16 +240,15 @@ export function ContactSection() {
                     name="message"
                     rows={6}
                     placeholder="По какому вопросу вам требуется консультация?"
-                    className="w-full min-h-64 resize-y bg-transparent text-sm leading-relaxed text-white placeholder:text-white/50 focus:outline-none"
+                    className="w-full min-h-36 resize-y bg-transparent text-sm leading-relaxed text-white placeholder:text-white/50 focus:outline-none"
                   />
-                </div>
+                </div><div className="mt-6 flex justify-end">
+            <SubmitButton />
+          </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-6 flex justify-end">
-            <SubmitButton />
-          </div>
 
           {/* Honeypot для защиты от ботов */}
           <div className="absolute left-[-9999px]" aria-hidden="true">
