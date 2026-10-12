@@ -85,7 +85,7 @@ export function CompetenciesSection() {
             return (
               <li key={title}>
                 <article
-                  className={`competency-card card-appear group relative flex flex-col overflow-hidden border border-gray-300/40 bg-white shadow-[0_10px_24px_rgba(15,23,42,0.04)] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_18px_36px_rgba(239,68,68,0.12)] sm:flex-row ${
+                  className={`competency-card card-appear group relative flex flex-col overflow-hidden border border-gray-300/40 bg-white shadow-[0_10px_24px_rgba(15,23,42,0.04)] transition-all duration-500 ease-outhover:border-red-200 hover:shadow-[0_18px_36px_rgba(239,68,68,0.12)] sm:flex-row ${
                     iconFirst ? "" : "sm:flex-row-reverse"
                   }`}
                   style={{ transitionDelay: `${index * 120}ms` }}

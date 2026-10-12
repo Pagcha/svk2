@@ -35,7 +35,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="group relative flex items-center px-4 py-2 text-[0.9rem] font-bold uppercase tracking-[0.18em] text-slate-700 transition-all duration-200 hover:text-red-700"
+              className="group relative flex items-center px-4 py-2 text-[0.85rem] font-bold uppercase tracking-[0.18em] text-slate-700 transition-all duration-200 hover:text-red-700"
             >
               <span className="absolute inset-x-2 bottom-1 h-px scale-x-0 bg-red-600 transition-transform duration-200 group-hover:scale-x-100" />
               {item.label}

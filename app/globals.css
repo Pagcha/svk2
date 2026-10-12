@@ -639,4 +639,12 @@
   }
 }
 
+.competency-card:hover {
+  scale: 1.03;
+  transition: 0.3s;
+}
 
+.competency-card
+{
+  transition: 0.3s;
+}
