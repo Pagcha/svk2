@@ -12,7 +12,7 @@ const products: Product[] = [
   { name: "Пневмоприводы", image: "/products/povorotniy.png" },
   { name: "Пневмомоторы", image: "/products/motor.png" },
   { name: "Фитинги", image: "/products/fistingi.png" },
-  { name: "Трубы и шланги", image: "/products/trubki.png" },
+  { name: "Трубы и шланги", image: "/products/rubki.png" },
   { name: "Блоки подготовки воздуха", image: "/products/block.png" },
   { name: "Распределители", image: "/products/raspredblock.png" },
   { name: "Редукторы", image: "/products/reductor.png" },
@@ -53,7 +53,7 @@ export default function ProductsSection() {
   return (
     <section
       id="products"
-      className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.12),transparent_38%),linear-gradient(180deg,#ffffff_0%,#fff7f7_38%,#f8fafc_100%)] py-[clamp(52px,6vw,90px)] text-slate-900"
+      className="relative overflow-hidden bg-white py-[clamp(52px,6vw,90px)] text-slate-900"
     >
       <div className="relative z-10 w-screen max-w-none -ml-[50vw] left-1/2 px-0">
         <div className="grid gap-0 md:grid-cols-2">

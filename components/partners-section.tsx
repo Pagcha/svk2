@@ -15,7 +15,7 @@ const partners = [
     name: "MetalWork",
     src: "/logos/metalwork.png",
     description:
-      "Итальянский производитель премиального пневмооборудования, известного надежностью и высокими стандартами качества в сфере промышленной автоматизации. Компания предлагает широкий спектр высокотечных компонентов — от пневмоцилиндров до систем подготовки воздуха, идеально подходящих для сложных эксплуатационных условий.",
+      "Итальянский производитель премиального пневмооборудования, известного надежностью и высокими стандартами качества в сфере промышленной автоматизации. Компания предлагает широкий спектр высокоточных компонентов — от пневмоцилиндров до систем подготовки воздуха, идеально подходящих для сложных эксплуатационных условий.",
   },
   {
     name: "Festo",
@@ -153,22 +153,16 @@ export function PartnersSection() {
     updateCentered()
   }, [updateCentered])
 
-  // Замер размеров, ResizeObserver и блокировка прокрутки колесом
+  // Замер размеров и ResizeObserver
   useEffect(() => {
     measure()
     const track = trackRef.current
     if (!track) return
 
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault() // колесо прокручивает страницу, а не карусель
-    }
-    track.addEventListener("wheel", onWheel, { passive: false })
-
     const observer = new ResizeObserver(measure)
     observer.observe(track)
 
     return () => {
-      track.removeEventListener("wheel", onWheel)
       observer.disconnect()
     }
   }, [measure])
@@ -201,6 +195,8 @@ export function PartnersSection() {
     })
   }
 
+  
+
   return (
     <section
       ref={sectionRef}
@@ -218,7 +214,7 @@ export function PartnersSection() {
           Генеральные партнёры компании
         </h2>
 
-        <div className="relative w-full overflow-visible pb-12 pt-4">
+        <div className="relative w-full overflow-visible pb-12 pt-4 h-[500px]">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-gradient-to-r from-slate-100 via-slate-100/80 to-transparent md:w-24" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-gradient-to-l from-slate-100 via-slate-100/80 to-transparent md:w-24" />
 
@@ -245,32 +241,40 @@ export function PartnersSection() {
           </div>
 
           <ul
-            ref={trackRef}
-            onScroll={handleScroll}
-            tabIndex={0}
-            role="region"
-            aria-label="Карточки партнёров, прокручиваемый список"
-            className="flex h-[430px] snap-x snap-mandatory gap-4 overflow-x-auto pb-8 pl-16 pr-16 pt-11 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {spacerCards.map((spacer, index) => (
+              ref={trackRef}
+              onScroll={handleScroll}
+              tabIndex={0}
+              role="region"
+              aria-label="Карточки партнёров, прокручиваемый список"
+              className="partners-track flex h-[55vh] snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden pb-8 pl-16 pr-16 pt-11 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            >
+            {spacerCards.map((spacer) => (
               <li
                 key={`spacer-left-${spacer.id}`}
                 data-spacer="true"
                 aria-hidden="true"
                 className="w-[120px] shrink-0 sm:w-[140px]"
-                style={{ opacity: 0, pointerEvents: 'none' }}
+                style={{ opacity: 0, pointerEvents: "none" }}
               />
             ))}
 
             {partners.map(({ name, src, description }, index) => {
               const isCentered = index === centeredIndex
+              const isPrevNeighbor =
+                index === (centeredIndex - 1 + partners.length) % partners.length
+              const isNextNeighbor = index === (centeredIndex + 1) % partners.length
+              const N = partners.length
+              const rawDist = Math.abs(index - centeredIndex)
+              const dist = Math.min(rawDist, N - rawDist) // кольцевая дистанция от центра
+              const onLeftSide =
+                index === (centeredIndex - 1 + N) % N || index === (centeredIndex - 2 + N) % N
 
               return (
                 <li
                   key={name}
                   data-real-index={index}
                   style={{ zIndex: isCentered ? 10 : undefined }}
-                  className={`group relative w-[240px] shrink-0 snap-center transition-all duration-300 hover:z-20 sm:w-[250px] lg:w-[240px] ${
+                  className={`gap-[1000px] group relative w-[340px] shrink-0 snap-center transition-all duration-300 hover:z-20 sm:w-[250px] lg:w-[240px] ${
                     isCentered ? "is-centered" : ""
                   }`}
                 >
@@ -301,11 +305,11 @@ export function PartnersSection() {
                         isCentered ? "opacity-100" : "opacity-0"
                       }`}
                     >
-                      <div className="partner-card__desc max-w-[82%] border border-slate-400/40 bg-white/95 px-4 py-3 text-center shadow-sm backdrop-blur-sm">
-                        <div className="relative mx-auto h-18 max-w-56">
-                          <Image src={src} alt={name} fill sizes="112px" className="object-contain" />
+                      <div className="partner-card__desc max-h-[90%] max-w-[82%] border border-slate-400/40 bg-white/95 px-4 py-4 text-center shadow-sm backdrop-blur-sm">
+                        <div className="relative mx-auto h-[72px] max-w-[224px]">
+                          <Image src={src} alt={name} fill sizes="224px" className="object-contain" />
                         </div>
-                        <div className="text-[24px] font-bold text-slate-900">{name}</div>
+                        <div className="text-[18px] font-bold text-slate-900">{name}</div>
                         <p className="mt-1 font-semibold text-[16px] leading-relaxed text-slate-700">
                           {description}
                         </p>
@@ -316,13 +320,13 @@ export function PartnersSection() {
               )
             })}
 
-            {spacerCards.map((spacer, index) => (
+            {spacerCards.map((spacer) => (
               <li
                 key={`spacer-right-${spacer.id}`}
                 data-spacer="true"
                 aria-hidden="true"
-                className="w-[120px] shrink-0 sm:w-[140px]"
-                style={{ opacity: 0, pointerEvents: 'none' }}
+                className="w-[150px] shrink-0 sm:w-[140px]"
+                style={{ opacity: 0, pointerEvents: "none" }}
               />
             ))}
           </ul>
