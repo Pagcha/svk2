@@ -45,7 +45,7 @@ export function AboutSection() {
       <div className="site-shell py-12 lg:py-16">
         <h2
           id="about-heading"
-          className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
+          className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(3rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
         >
           О нас
         </h2>
@@ -56,7 +56,7 @@ export function AboutSection() {
             className="info-card about-card group relative flex items-center overflow-hidden border border-gray-300/40 bg-white p-6 shadow-[0_10px_24px_rgba(15,23,42,0.04)] sm:p-8"
           >
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.12),transparent_42%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <p className="relative z-10 text-pretty leading-relaxed text-slate-700">
+            <p className="relative z-10 text-pretty text-[3vh] leading-relaxed text-slate-700">
               СВК Технолоджи — инженерные решения под ключ для вашего бизнеса и производства.
               Мы берём на себя полный цикл инженерно-технических работ: от первичного аудита
               и проектирования до поставки, монтажа и пусконаладки инженерных систем.

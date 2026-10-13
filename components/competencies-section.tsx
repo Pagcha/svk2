@@ -72,12 +72,12 @@ export function CompetenciesSection() {
       <div className="ambient-orb ambient-orb--1" />
       <div className="ambient-orb ambient-orb--2" />
       <div className="site-shell py-12 lg:py-16">
-        <h2
+        <h1
           id="competencies-heading"
-          className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
+          className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(3rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
         >
           Наши основные компетенции
-        </h2>
+        </h1>
 
         <ul className="flex flex-col gap-6">
           {competencies.map(({ icon: Icon, title, description }, index) => {
@@ -97,9 +97,9 @@ export function CompetenciesSection() {
                       iconFirst ? "sm:border-r" : "sm:border-l"
                     } sm:border-red-300/40`}
                   >
-                    <div className="flex h-16 w-16 items-center justify-center border border-white/25 bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-sm transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                    <div className="flex h-29 w-39 items-center justify-center border   transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
                       <Icon
-                        className="competency-icon h-8 w-8 text-white transition-transform duration-500 group-hover:scale-110"
+                        className="competency-icon h-14 w-14 text-white transition-transform duration-500 group-hover:scale-110"
                         aria-hidden="true"
                       />
                     </div>
@@ -108,9 +108,9 @@ export function CompetenciesSection() {
                   <div className="relative z-10 flex flex-col justify-center gap-2 p-6 sm:p-8">
                     <div className="mb-1 flex items-center gap-2">
                       <span className="h-2.5 w-2.5 bg-red-500 shadow-[0_0_14px_rgba(239,68,68,0.7)]" />
-                      <h3 className="text-lg font-bold text-black">{title}</h3>
+                      <h3 className="text-lg text-[3.5vh] font-bold text-black">{title}</h3>
                     </div>
-                    <p className="text-pretty leading-relaxed text-slate-700">
+                    <p className="text-pretty text-[2.5vh] leading-relaxed text-slate-700">
                       {description}
                     </p>
                   </div>

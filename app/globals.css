@@ -615,7 +615,7 @@
 }
 
 .partners-track li.is-centered .partner-card > img {
-  transform: skewX(0deg) scale(1.05);
+  transform: skewX(0deg) scale(1);
   opacity: 1;
   filter: none;
 }

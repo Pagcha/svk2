@@ -18,7 +18,7 @@ export function HeroSection() {
 
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/about-facility.png"
+          src="/fon1.png"
           alt=""
           fill
           priority

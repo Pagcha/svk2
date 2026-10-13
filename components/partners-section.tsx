@@ -209,7 +209,7 @@ export function PartnersSection() {
       <div className="site-shell py-12 lg:py-16">
         <h2
           id="partners-heading"
-          className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
+          className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(3rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
         >
           Генеральные партнёры компании
         </h2>
@@ -281,6 +281,7 @@ export function PartnersSection() {
                     isCentered ? "is-centered" : ""
                   }`}
                 >
+                  
                   <div
                     data-reveal
                     role="button"
@@ -304,7 +305,7 @@ export function PartnersSection() {
                     />
 
                     <div
-                      className={`pointer-events-none absolute inset-0 flex items-center justify-center bg-slate-900/15 transition-opacity duration-300 ${
+                      className={`pointer-events-none absolute inset-0 flex items-center backdrop-blur-md justify-center bg-slate-900/20 transition-opacity duration-300 ${
                         isCentered ? "opacity-100" : "opacity-0"
                       }`}
                     >

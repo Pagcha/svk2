@@ -55,7 +55,7 @@ export function WhyUsSection() {
           </span>
           <h2
             id="why-us-heading"
-            className="bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-[clamp(1.7rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
+            className="bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-[clamp(3rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
           >
             Наши главные преимущества
           </h2>
@@ -65,7 +65,7 @@ export function WhyUsSection() {
           {reasons.map((text, index) => (
             <li key={index}>
               <article
-                className="why-card group relative h-full overflow-hidden border border-red-100 bg-white/85 p-5 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_18px_32px_rgba(239,68,68,0.12)]"
+                className="why-card group relative h-full overflow-hidden border border-red-100 bg-white/85 p-5 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-all duration-500 hover: scale-105 hover:border-red-200 hover:shadow-[0_18px_32px_rgba(239,68,68,0.12)]"
                 style={{ transitionDelay: `${index * 120}ms` }}
               >
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.12),transparent_38%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -76,7 +76,7 @@ export function WhyUsSection() {
                     </span>
                     <span className="h-px flex-1 bg-gradient-to-r from-red-300 via-red-100 to-transparent" />
                   </div>
-                  <p className="text-sm leading-relaxed text-slate-700">{text}</p>
+                  <p className="text-sm text-[2.5vh] leading-relaxed text-slate-700">{text}</p>
                 </div>
               </article>
             </li>
