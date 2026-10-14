@@ -65,10 +65,9 @@ export function WhyUsSection() {
           {reasons.map((text, index) => (
             <li key={index}>
               <article
-                className="why-card group relative h-full overflow-hidden border border-red-100 bg-white/85 p-5 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-all duration-500 hover: scale-105 hover:border-red-200 hover:shadow-[0_18px_32px_rgba(239,68,68,0.12)]"
+                className="why-card group relative h-full overflow-hidden border border-red-100 bg-white/85 p-5 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-all duration-500"
                 style={{ transitionDelay: `${index * 120}ms` }}
               >
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.12),transparent_38%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative z-10 flex h-full flex-col gap-4">
                   <div className="flex items-center justify-between gap-4">
                     <span className="flex h-9 w-9 items-center justify-center bg-red-600 text-sm font-bold text-white shadow-[0_8px_18px_rgba(239,68,68,0.35)]">

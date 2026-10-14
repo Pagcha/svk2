@@ -65,12 +65,12 @@ export function AboutSection() {
           style={{ willChange: "transform" }}
         >
           <Image
-            src="/fon1.png"
+            src="/fon3.png"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-100 scale-[1.13]"
+            className="object-cover opacity-100 scale-[1.1]"
           />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(239,68,68,0.18),_transparent_42%),linear-gradient(135deg,_rgba(255,255,255,0.85),_rgba(248,250,252,0.85))]" />
