@@ -178,7 +178,14 @@
     @apply bg-stone-100 text-neutral-900;
     min-width: 320px;
     overflow-x: hidden;
-    background-image: radial-gradient(circle at top, rgba(239, 68, 68, 0.12), transparent 35%), linear-gradient(180deg, #f8f8f8 0%, #f3f3f3 100%);
+    background-color: #f8f8f8;
+    background-image:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(248, 250, 252, 0.55)),
+      url("/fon1.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
   }
 
   .site-shell {

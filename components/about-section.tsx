@@ -11,6 +11,19 @@ export function AboutSection() {
     const section = ref.current
     if (!section) return
 
+    const handleScroll = () => {
+      const rect = section.getBoundingClientRect()
+      const offset = Math.max(-80, Math.min(80, rect.top * 0.14))
+      const image = section.querySelector("[data-about-bg]") as HTMLElement | null
+
+      if (image) {
+        image.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`
+      }
+    }
+
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
     const items = Array.from(section.querySelectorAll("[data-reveal]"))
     const revealItems = () => {
       const timers: number[] = []
@@ -27,10 +40,15 @@ export function AboutSection() {
       }
     }
 
-    return setupRevealOnViewport(section, revealItems, {
+    const cleanup = setupRevealOnViewport(section, revealItems, {
       threshold: 0.25,
       viewportFactor: 0.85,
     })
+
+    return () => {
+      cleanup?.()
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [])
 
   return (
@@ -38,17 +56,35 @@ export function AboutSection() {
       ref={ref}
       id="about"
       aria-labelledby="about-heading"
-      className="section-ambient flex min-h-screen items-center border-b border-gray-300/50 bg-gradient-to-b from-slate-50 to-white"
+      className="section-ambient relative isolate flex min-h-screen items-center overflow-hidden border-b border-gray-300/50 bg-gradient-to-b from-slate-50 to-white"
     >
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div
+          data-about-bg
+          className="absolute inset-0 transition-transform duration-75 ease-out"
+          style={{ willChange: "transform" }}
+        >
+          <Image
+            src="/fon1.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-100 scale-[1.13]"
+          />
+        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(239,68,68,0.18),_transparent_42%),linear-gradient(135deg,_rgba(255,255,255,0.85),_rgba(248,250,252,0.85))]" />
+      </div>
+
       <div className="ambient-orb ambient-orb--1" />
       <div className="ambient-orb ambient-orb--2" />
       <div className="site-shell py-12 lg:py-16">
-        <h2
+        {/* <h2
           id="about-heading"
           className="mb-10 bg-gradient-to-r from-red-700 via-red-500 to-slate-900 bg-clip-text text-center text-[clamp(3rem,2.2vw,2.5rem)] font-black leading-[1.08] tracking-[-0.04em] text-transparent"
         >
           О нас
-        </h2>
+        </h2> */}
 
         <div className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
           <div
@@ -57,8 +93,11 @@ export function AboutSection() {
           >
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.12),transparent_42%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             <p className="relative z-10 text-pretty text-[3vh] leading-relaxed text-slate-700">
-              СВК Технолоджи — инженерные решения под ключ для вашего бизнеса и производства.
-              Мы берём на себя полный цикл инженерно-технических работ: от первичного аудита
+              <span className="family-['Fira_Sans'] font-bold text-[clamp(1.2rem,1.7vw,1.8rem)] text-slate-900">
+                 
+              <span className="text-red-500">СВК</span> Технолоджи{" "}
+              </span>
+              — инженерные решения под ключ для вашего бизнеса и производства. Мы берём на себя полный цикл инженерно-технических работ: от первичного аудита
               и проектирования до поставки, монтажа и пусконаладки инженерных систем.
               Тесное сотрудничество с ведущими мировыми и отечественными производителями 
               оборудования позволяет нам находить оптимальные технические решения под задачи

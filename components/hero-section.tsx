@@ -6,6 +6,27 @@ import { useEffect, useRef } from 'react'
 export function HeroSection() {
   const ref = useRef<HTMLElement | null>(null)
 
+  useEffect(() => {
+    const section = ref.current
+
+    if (!section) return
+
+    const handleScroll = () => {
+      const rect = section.getBoundingClientRect()
+      const offset = Math.max(-80, Math.min(80, rect.top * 0.18))
+      const image = section.querySelector("[data-hero-bg]") as HTMLElement | null
+
+      if (image) {
+        image.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`
+      }
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <section
       ref={ref}
@@ -16,19 +37,25 @@ export function HeroSection() {
       <div className="ambient-orb ambient-orb--2" />
       <div className="ambient-orb ambient-orb--3" />
 
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/fon1.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-100"
-        />
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div
+          data-hero-bg
+          className="absolute inset-0 transition-transform duration-75 ease-out"
+          style={{ willChange: 'transform' }}
+        >
+          <Image
+            src="/fon1.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-100 scale-[1.13]"
+          />
+        </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(239,68,68,0.18),_transparent_42%),linear-gradient(135deg,_rgba(255,255,255,0.85),_rgba(248,250,252,0.85))]" />
       </div>
 
-      <div className="site-shell hero-content flex min-h-[92vh] flex-col items-center justify-center py-20 text-center lg:min-h-[94vh]">
+      <div className="site-shell hero-content relative z-10 flex min-h-[92vh] flex-col items-center justify-center py-20 text-center lg:min-h-[94vh]">
         <div className="mb-6 flex flex-wrap items-center justify-center gap-3">
           
         </div>
@@ -59,8 +86,6 @@ export function HeroSection() {
             Смотреть каталог
           </a>
         </div>
-
-        
       </div>
     </section>
   )

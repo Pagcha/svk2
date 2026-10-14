@@ -53,7 +53,7 @@ export default function ProductsSection() {
   return (
     <section
       id="products"
-      className="relative overflow-hidden bg-white py-[clamp(52px,6vw,90px)] text-slate-900"
+      className="relative overflow-hidden bg-white text-slate-900"
     >
       <div className="relative z-10 w-screen max-w-none -ml-[50vw] left-1/2 px-0">
         <div className="grid gap-0 md:grid-cols-2">
